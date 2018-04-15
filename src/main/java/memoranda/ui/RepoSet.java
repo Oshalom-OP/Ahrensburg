@@ -39,8 +39,8 @@ import java.awt.event.ActionEvent;
 public class RepoSet extends JDialog {
 
 	// Global Variables 
-	private final JPanel contentPanel = new JPanel();
-	private JTextField repoName;
+	private final JPanel _contentPanel = new JPanel();
+	private JTextField _repoName;
 
 	
 	
@@ -81,21 +81,21 @@ public class RepoSet extends JDialog {
 		setTitle("Set GitHub Repo");
 		setBounds(100, 100, 413, 164);
 		getContentPane().setLayout(new BorderLayout());
-		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
-		contentPanel.setLayout(new GridLayout(0, 1, 0, 0));
+		_contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+		getContentPane().add(_contentPanel, BorderLayout.CENTER);
+		_contentPanel.setLayout(new GridLayout(0, 1, 0, 0));
 		{
 			JLayeredPane layeredPane = new JLayeredPane();
-			contentPanel.add(layeredPane);
+			_contentPanel.add(layeredPane);
 			
 			JLabel lblGithubRepo = new JLabel("GitHub Owner/Repo:");
 			lblGithubRepo.setBounds(10, 11, 135, 14);
 			layeredPane.add(lblGithubRepo);
 			
-			repoName = new JTextField();
-			repoName.setBounds(10, 36, 366, 20);
-			layeredPane.add(repoName);
-			repoName.setColumns(10);
+			_repoName = new JTextField();
+			_repoName.setBounds(10, 36, 366, 20);
+			layeredPane.add(_repoName);
+			_repoName.setColumns(10);
 		}
 		{
 			JPanel buttonPane = new JPanel();
@@ -106,7 +106,7 @@ public class RepoSet extends JDialog {
 				okButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						// Get the String that the user enters. 
-						String inputText = repoName.getText();
+						String inputText = _repoName.getText();
 						
 						/* Moved error checking to ProjectImpl. It now throws RuntimeException
 						// If the input text was null, then display an error. 
@@ -124,11 +124,11 @@ public class RepoSet extends JDialog {
 						//else {
 						try {
 							// Debugging lines. 
-							System.out.print("Repo Name set to: \"" + repoName.getText() + "\"");
+							System.out.print("Repo Name set to: \"" + _repoName.getText() + "\"");
 							System.out.println(" for project: " + CurrentProject.get().getTitle());
 							
 							// Execute "addRepoName" from main.java.memoranda.CurrentProject. 
-						  CurrentProject.get().addRepoName(repoName.getText());
+						  CurrentProject.get().addRepoName(_repoName.getText());
 						  App.getFrame().refreshAgenda();
 						  dispose();
 

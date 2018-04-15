@@ -18,6 +18,7 @@ import javax.swing.border.Border;
 
 import main.java.memoranda.util.Context;
 import main.java.memoranda.util.Local;
+import java.awt.Font;
 
 /**
  * 
@@ -38,6 +39,7 @@ public class WorkPanel extends JPanel {
 	public JButton tasksB = new JButton();
 	public JButton eventsB = new JButton();
 	public JButton filesB = new JButton();
+	public JButton btnCommits = new JButton();
 	JButton currentB = null;
 	Border border1;
 
@@ -144,6 +146,38 @@ public class WorkPanel extends JPanel {
 		tasksB.setOpaque(false);
 		tasksB.setMaximumSize(new Dimension(60, 80));
 		tasksB.setBackground(Color.white);
+		
+		
+		
+		
+		
+		
+		btnCommits.setBackground(Color.white);
+		btnCommits.setMaximumSize(new Dimension(60, 80));
+		btnCommits.setMinimumSize(new Dimension(30, 30));
+
+		btnCommits.setFont(new java.awt.Font("Dialog", 1, 10));
+		btnCommits.setPreferredSize(new Dimension(50, 50));
+		btnCommits.setBorderPainted(false);
+		btnCommits.setContentAreaFilled(false);
+		btnCommits.setFocusPainted(false);
+		btnCommits.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnCommits.setText(Local.getString("Projects"));
+		btnCommits.setVerticalAlignment(SwingConstants.TOP);
+		btnCommits.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnCommits.addActionListener(new java.awt.event.ActionListener() {
+		    public void actionPerformed(ActionEvent e) {
+		    	btnCommits_actionPerformed(e);
+		    }
+		});
+		btnCommits.setIcon(
+		    new ImageIcon(
+		        main.java.memoranda.ui.AppFrame.class.getResource(
+		            "/ui/icons/githubicon.png")));
+		btnCommits.setOpaque(false);
+		btnCommits.setMargin(new Insets(0, 0, 0, 0));
+		btnCommits.setSelected(true);
+
 
 		notesB.setFont(new java.awt.Font("Dialog", 1, 10));
 		notesB.setBackground(Color.white);
@@ -203,6 +237,24 @@ public class WorkPanel extends JPanel {
 		toolBar.add(agendaB, null);
 		toolBar.add(eventsB, null);
 		toolBar.add(tasksB, null);
+		toolBar.add(btnCommits, null);
+		btnCommits.setVerticalTextPosition(SwingConstants.BOTTOM);
+		btnCommits.setVerticalAlignment(SwingConstants.TOP);
+		btnCommits.setText("Commits");
+		btnCommits.setSelected(true);
+		btnCommits.setPreferredSize(new Dimension(50, 50));
+		btnCommits.setOpaque(false);
+		btnCommits.setMinimumSize(new Dimension(30, 30));
+		btnCommits.setMaximumSize(new Dimension(60, 80));
+		btnCommits.setMargin(new Insets(0, 0, 0, 0));
+		btnCommits.setHorizontalTextPosition(SwingConstants.CENTER);
+		btnCommits.setFont(new Font("Dialog", Font.BOLD, 10));
+		btnCommits.setFocusPainted(false);
+		btnCommits.setContentAreaFilled(false);
+		btnCommits.setBorderPainted(false);
+		btnCommits.setBackground(Color.WHITE);
+		
+		toolBar.add(btnCommits);
 		toolBar.add(notesB, null);
 		toolBar.add(filesB, null);
 		currentB = agendaB;
@@ -227,6 +279,8 @@ public class WorkPanel extends JPanel {
 				eventsB_actionPerformed(null);
 			else if (pan.equals("FILES"))
 				filesB_actionPerformed(null);
+			else if (pan.equals("COMMITS"))
+				filesB_actionPerformed(null);
 		}
 	}
 
@@ -249,6 +303,13 @@ public class WorkPanel extends JPanel {
 		dailyItemsPanel.selectPanel("TASKS");
 		setCurrentButton(tasksB);
 		Context.put("CURRENT_PANEL", "TASKS");
+	}
+	
+	public void btnCommits_actionPerformed(ActionEvent e) {
+		cardLayout1.show(panel, "DAILYITEMS");
+		dailyItemsPanel.selectPanel("COMMITS");
+		setCurrentButton(btnCommits);
+		Context.put("CURRENT_PANEL", "COMMITS");
 	}
 
 	public void eventsB_actionPerformed(ActionEvent e) {

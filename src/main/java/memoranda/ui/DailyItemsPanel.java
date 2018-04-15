@@ -65,6 +65,7 @@ public class DailyItemsPanel extends JPanel {
     TaskPanel tasksPanel = new TaskPanel(this);
     EventsPanel eventsPanel = new EventsPanel(this);
     AgendaPanel agendaPanel = new AgendaPanel(this);
+    CommitsPanel commitsPanel = new CommitsPanel(this);
     ImageIcon expIcon = new ImageIcon(main.java.memoranda.ui.AppFrame.class.getResource("/ui/icons/exp_right.png"));
     ImageIcon collIcon = new ImageIcon(main.java.memoranda.ui.AppFrame.class.getResource("/ui/icons/exp_left.png"));
     ImageIcon bookmarkIcon = new ImageIcon(main.java.memoranda.ui.AppFrame.class.getResource("/ui/icons/star8.png"));
@@ -96,6 +97,7 @@ public class DailyItemsPanel extends JPanel {
     JTabbedPane tasksTabbedPane = new JTabbedPane();
     JTabbedPane eventsTabbedPane = new JTabbedPane();
 	JTabbedPane agendaTabbedPane = new JTabbedPane();
+	JTabbedPane commitsTabbedPane = new JTabbedPane();
     Border border2;
 
 	String CurrentPanel;
@@ -202,6 +204,7 @@ public class DailyItemsPanel extends JPanel {
 
         mainPanel.add(editorsPanel, BorderLayout.CENTER);
         
+        editorsPanel.add(commitsPanel, "COMMITS");
         editorsPanel.add(agendaPanel, "AGENDA");
         editorsPanel.add(eventsPanel, "EVENTS");
         editorsPanel.add(tasksPanel, "TASKS");
@@ -301,6 +304,7 @@ public class DailyItemsPanel extends JPanel {
         mainTabsPanel.add(tasksTabbedPane, "TASKSTAB");
         mainTabsPanel.add(notesControlPane, "NOTESTAB");
 		mainTabsPanel.add(agendaTabbedPane, "AGENDATAB");
+		mainTabsPanel.add(commitsTabbedPane, "COMMITSTAB");
         updateIndicators(CurrentDate.get(), CurrentProject.getTaskList());
         mainPanel.setBorder(null);
     }
@@ -461,9 +465,15 @@ public class DailyItemsPanel extends JPanel {
        //     calendar.jnCalendar.updateUI();
         }
         boolean isAg = pan.equals("AGENDA");
+        boolean isCmt = pan.equals("COMMITS");
         agendaPanel.setActive(isAg);
-        if (isAg)
+        if (isAg) {
         	agendaPanel.refresh(CurrentDate.get());
+        }
+        if(isCmt) {
+        	commitsPanel.refresh(CurrentDate.get());
+        }
+        
         cardLayout1.show(editorsPanel, pan);
         cardLayout2.show(mainTabsPanel, pan + "TAB");
 		calendar.jnCalendar.updateUI();

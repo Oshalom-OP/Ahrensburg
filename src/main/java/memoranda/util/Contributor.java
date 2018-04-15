@@ -4,13 +4,13 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Contributor {
-  private String login, avatar_url, name;
+  private String _login, _avatar_url, _name;
 	
 	public Contributor(String login, String avatar_url, String name) {
 		
-		this.login = login;
-		this.avatar_url = avatar_url;
-    this.name = name;
+		this._login = login;
+		this._avatar_url = avatar_url;
+    this._name = name;
 	}
   
   /**
@@ -18,32 +18,32 @@ public class Contributor {
    * @param json JSON object in the form of a GitHub API User
    */
   public Contributor (JSONObject json) throws JSONException{
-    this.login = json.getString("login");
-    this.avatar_url = json.getString("avatar_url");
+    this._login = json.getString("login");
+    this._avatar_url = json.getString("avatar_url");
     try {
-      this.name = json.getString("name");
+      this._name = json.getString("name");
     } catch (JSONException ex) {
-      this.name = "null";
+      this._name = "null";
     }
   }
   
 	public String getLogin() {
-		return login;
+		return _login;
 	}
 	public void setLogin(String login) {
-		this.login = login;
+		this._login = login;
 	}
 	public String getAvatar_url() {
-		return avatar_url;
+		return _avatar_url;
 	}
 	public void setAvatar_url(String avatar_url) {
-		this.avatar_url = avatar_url;
+		this._avatar_url = avatar_url;
 	}
 	public String getName() {
-		return name;
+		return _name;
 	}
 	public void setContributions(String name) {
-		this.name = name;
+		this._name = name;
 	}
 	
 }

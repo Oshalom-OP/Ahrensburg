@@ -56,8 +56,8 @@ import java.awt.event.ActionEvent;
 */
 
 public class SetCredDialog extends JDialog {
-	private JTextField textField;
-	private JPasswordField passwordField;
+	private JTextField _textField;
+	private JPasswordField _passwordField;
 
 	/**
 	  Method: main
@@ -116,9 +116,9 @@ public class SetCredDialog extends JDialog {
 			getContentPane().add(lblUsername, "2, 2, 5, 1, left, default");
 		}
 		{
-			textField = new JTextField();
-			getContentPane().add(textField, "2, 4, 5, 1, fill, default");
-			textField.setColumns(10);
+			_textField = new JTextField();
+			getContentPane().add(_textField, "2, 4, 5, 1, fill, default");
+			_textField.setColumns(10);
 		}
 		{
 			JLabel lblPassword = new JLabel("Password");
@@ -132,13 +132,13 @@ public class SetCredDialog extends JDialog {
 				}
 			});
 			{
-				passwordField = new JPasswordField();
-				passwordField.addActionListener(new ActionListener() {
+				_passwordField = new JPasswordField();
+				_passwordField.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						checkAuth();
 					}
 				});
-				getContentPane().add(passwordField, "2, 8, 5, 1, fill, default");
+				getContentPane().add(_passwordField, "2, 8, 5, 1, fill, default");
 			}
 			getContentPane().add(btnNewButton, "1, 10, 6, 1");
 		}
@@ -182,7 +182,7 @@ public class SetCredDialog extends JDialog {
 		try {
 			writer = new FileWriter(file);
 			@SuppressWarnings("deprecation")
-			String userCredentials = textField.getText() + ":" + passwordField.getText(); //"username:password";
+			String userCredentials = _textField.getText() + ":" + _passwordField.getText(); //"username:password";
 			String basicAuth = "Basic " + java.util.Base64.getEncoder().encodeToString(userCredentials.getBytes());
 			writer.write(basicAuth);
 			writer.close();
